@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: hello-openshift
+    app: hello-openshift
+  name: hello-openshift
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-openshift
+  template:
+    metadata:
+      name: hello-openshift
+      creationTimestamp:
+      labels:
+        name: hello-openshift
+        app: hello-openshift
+    spec:
+      containers:
+      - name: hello-openshift
+        image: openshift/hello-openshift
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+        - name: tmp
+          mountPath: "/tmp"
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          capabilities: {}
+          privileged: false
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      restartPolicy: Always
+      dnsPolicy: ClusterFirst

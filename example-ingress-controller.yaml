@@ -1,0 +1,14 @@
+kind: IngressController
+apiVersion: operator.openshift.io/v1
+metadata:
+  name: example
+  namespace: openshift-ingress-operator
+spec:
+  domain: example.rhoweocp46.nasashift.support
+  endpointPublishingStrategy:
+    type: LoadBalancerService
+  replicas: 1
+  logging:
+    access:
+      destination:
+        type: Container
